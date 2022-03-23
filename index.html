@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Laman: Hittite Name Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link
+				rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+				/>
+	</head>
+	<body>
+		<main class="container">
+			<br></br>
+			<div class="row titlecontainer">
+				<img src="https://i.ibb.co/rx4FNsR/laman.png" class="col s4" alt=""/>
+				<h1 class="title"></h1>
+			</div>
+			<nav>
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field blue lighten-4">
+							<input id="search" type="search" >
+							<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
+				</div>
+			</nav>
+			<br></br>
+			<div id="filters" class="row">
+				<div id="type" class="card blue lighten-4 row col s5" >
+					<span class="col s12 card-title black-text">Type</span>
+					<a  class="btn-small blue lighten-3 black-text">All</a>
+					<a  class="btn-small blue lighten-3 black-text">Divine Names</a>
+					<a  class="btn-small blue lighten-3 black-text">Personal Names</a>
+					<a  class="btn-small blue lighten-3 black-text">Geographical Names</a>
+				</div>
+				<div id="spelling" class="card blue lighten-4 row col s4" >
+					<span class="col s12 card-title black-text">Spelling</span>
+					<a  class="btn-small blue lighten-3 black-text">All</a>
+					<a  class="btn-small blue lighten-3 black-text ">Phonetic</a>
+					<a  class="btn-small blue lighten-3 black-text">Logographic</a>
+					<a  class="btn-small blue lighten-3 black-text">Akkadographic</a>
+				</div>
+				<div id="Completness" class="card blue lighten-4 row col s3" >
+					<span class="col s12 card-title black-text">Completness</span>
+					<a  class="btn-small blue lighten-3 black-text">All</a>
+					<a  class="btn-small blue lighten-3 black-text">Acephalous</a>
+					<a  class="btn-small blue lighten-3 black-text">Incomplete</a>
+				</div>
+			</div>
+			<div id="data" class="row"></div>
+		</main>
+		<div id="modal1" class="modal">
+			<div id="modal-content" class="modal-content">
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect waves-blue btn-flat">Close</a>
+			</div>
+		</div>
+        <footer class="page-footer blue lighten-4 black-text">
+          <div class="container">
+            <div class="row">
+                <h5 class="black-text">Part of LAMAN Project</h5>
+                <p class="black-text text-lighten-4">Based on Hittite Divine Names, Hittite Personal Names and Hittite Geographical Names</p>
+            </div>
+          </div>
+          <div class="footer-copyright black-text">
+            <div class="container">
+            Michele Cammarosano © 2021 
+            <a class="text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</html>

@@ -1,0 +1,35 @@
+.titlecontainer{
+	position: relative;
+	text-align: center;
+}
+
+body{
+font-family: 'Raleway', sans-serif;
+}
+
+.title{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%)
+}
+
+a{
+	margin-bottom: 10px;
+}
+
+.btn-small{
+	font-size: 0.7rem !important;
+}
+
+h1 { color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 2em; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+}
