@@ -4,10 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Laman: Hittite Name Finder</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="icon.svg">	<title>Laman: Hittite Name Finder</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="style.css" type="text/css" media="all">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link
@@ -16,16 +16,16 @@
 				/>
 	</head>
 	<body>
-		<main class="container">
+		<main class="row container">
 			<br></br>
 			<div class="row titlecontainer">
-				<img src="https://i.ibb.co/rx4FNsR/laman.png" class="col s4" alt=""/>
+				<img src="laman.png" class="col s4" alt=""/>
 				<h1 class="title"></h1>
 			</div>
-			<nav>
+			<nav class="s12">
 				<div class="nav-wrapper">
 					<form>
-						<div class="input-field blue lighten-4">
+						<div class="input-field blue lighten-2">
 							<input id="search" type="search" >
 							<label class="label-icon" for="search"><i class="material-icons">search</i></label>
 							<i class="material-icons">close</i>
@@ -33,30 +33,40 @@
 					</form>
 				</div>
 			</nav>
-			<br></br>
-			<div id="filters" class="row">
-				<div id="type" class="card blue lighten-4 row col s5" >
-					<span class="col s12 card-title black-text">Type</span>
-					<a  class="btn-small blue lighten-3 black-text">All</a>
-					<a  class="btn-small blue lighten-3 black-text">Divine Names</a>
-					<a  class="btn-small blue lighten-3 black-text">Personal Names</a>
-					<a  class="btn-small blue lighten-3 black-text">Geographical Names</a>
-				</div>
-				<div id="spelling" class="card blue lighten-4 row col s4" >
-					<span class="col s12 card-title black-text">Spelling</span>
-					<a  class="btn-small blue lighten-3 black-text">All</a>
-					<a  class="btn-small blue lighten-3 black-text ">Phonetic</a>
-					<a  class="btn-small blue lighten-3 black-text">Logographic</a>
-					<a  class="btn-small blue lighten-3 black-text">Akkadographic</a>
-				</div>
-				<div id="Completness" class="card blue lighten-4 row col s3" >
-					<span class="col s12 card-title black-text">Completness</span>
-					<a  class="btn-small blue lighten-3 black-text">All</a>
-					<a  class="btn-small blue lighten-3 black-text">Acephalous</a>
-					<a  class="btn-small blue lighten-3 black-text">Incomplete</a>
-				</div>
+			<p class="center-align ">Click on a name to visualize correspondences & literature; use the filters below and/or a string in the search box (with or without diacritics).
+			Use the characters   °   and   §   as left- and right-end markers respectively.</p>
+			<ul class="collapsible">
+				<li class="col s4">
+					<div class="collapsible-header"><i class="material-icons">sort</i>Types</div>
+					<div class="collapsible-body">
+						<a id="type_all" class="btn-small white disabled lighten-3 black-text">All</a>
+						<a id="type_dn" class="btn-small purple lighten-2 white-text">Divine Names</a>
+						<a id="type_pn" class="btn-small blue lighten-2 white-text">Personal Names</a>
+						<a id="type_gn" class="btn-small green lighten-2 white-text">Geographical Names</a>
+					</div>
+					</div>
+				</li>
+				<li class="col s4">
+					<div class="collapsible-header"><i class="material-icons">edit</i>Spelling</div>
+					<div class="collapsible-body">
+						<a id="spel_all" class="btn-small blue disabled lighten-3 white-text">All</a>
+						<a id="spel_phon" class="btn-small blue lighten-3 white-text ">Phonetic</a>
+						<a id="spel_logo" class="btn-small blue lighten-3 white-text">Logographic</a>
+						<a id="spel_akk" class="btn-small blue lighten-3 white-text">Akkadographic</a>
+
+				</li>
+				<li class="col s4">
+					<div class="collapsible-header"><i class="material-icons">border_style</i>Completness</div>
+					<div class="collapsible-body">
+						<a id="comp_all"  class="btn-small blue lighten-3 disabled white-text">All</a>
+						<a id="comp_acep" class="btn-small blue lighten-3 white-text">Acephalous</a>
+						<a id="comp_incomp" class="btn-small blue lighten-3 white-text">Incomplete</a>
+				</li>
+			</ul>
+			<h4 class="row col s12">Results</h4>
+			<div id="data" class="row">
+
 			</div>
-			<div id="data" class="row"></div>
 		</main>
 		<div id="modal1" class="modal">
 			<div id="modal-content" class="modal-content">
@@ -65,20 +75,24 @@
 				<a href="#!" class="modal-close waves-effect waves-blue btn-flat">Close</a>
 			</div>
 		</div>
-        <footer class="page-footer blue lighten-4 black-text">
-          <div class="container">
-            <div class="row">
-                <h5 class="black-text">Part of LAMAN Project</h5>
-                <p class="black-text text-lighten-4">Based on Hittite Divine Names, Hittite Personal Names and Hittite Geographical Names</p>
-            </div>
-          </div>
-          <div class="footer-copyright black-text">
-            <div class="container">
-            Michele Cammarosano © 2021 
-            <a class="text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<footer class="page-footer blue darken-2 white-text">
+			<div class="container">
+				<div class="row">
+					<h5 class="white-text">Part of LAMAN Project</h5>
+					<p class="white-text text-lighten-4">Based on Hittite Divine Names, Hittite Personal Names and Hittite Geographical Names</p>
+				</div>
+			</div>
+			<div class="footer-copyright white-text">
+				<div class="container">
+					Michele Cammarosano © 2022
+					<a class="text-darken-2 right" href="#!">More Links</a>
+				</div>
+			</div>
+		</footer>
 	</body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script type="text/javascript" src="data.js"></script>

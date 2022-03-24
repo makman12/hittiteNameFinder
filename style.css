@@ -20,6 +20,7 @@ a{
 
 .btn-small{
 	font-size: 0.7rem !important;
+	padding: 0px 5px 0px 5px !important;
 }
 
 h1 { color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 2em; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
@@ -27,9 +28,11 @@ h1 { color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 2em; fo
 
 footer {
   position: fixed;
-  left: 0;
   bottom: 0;
   width: 100%;
-  background-color: red;
-  color: white;
+  padding: 0px !important;
+}
+
+.collapsible-body{
+	padding: 0px !important;
 }
