@@ -43,7 +43,8 @@ function detail(obj) {
 	attes=obj["Attestation"].split(";")
 	modalContent.innerHTML = `
 	<ul class="collection with-header">
-	<li class="collection-header"><h4><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4>
+	<li class="collection-header"><h4><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4></li>
+	${CuneiformMaker(obj)}
 	</ul>
 	<h5>Spelling: ${obj["Writing_clean"]}</h5>
 	<ul class="collection" ></ul>
@@ -58,6 +59,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	var elems = document.querySelectorAll(".modal");
 	var instances = M.Modal.init(elems);
 });
+
+function CuneiformMaker(obj){
+	try {
+
+	let shaped = shaper(obj.Name_clean)
+	let text = ""
+	for (i of shaped){
+		text+=convertCuneiform(i)
+	}
+	if (text){
+		return `<li class="collection-header cuneiform"> ${text}</li>`	
+	}else{
+	return ""
+	}
+	}catch{
+		return ""
+	}
+
+}
+
 
 function attesmaker(attes){
 	let text=""
