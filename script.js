@@ -43,7 +43,7 @@ function detail(obj) {
 	attes=obj["Attestation"].split(";")
 	modalContent.innerHTML = `
 	<ul class="collection with-header">
-	<li class="collection-header"><h4><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4></li>
+	<li class="collection-header"><h4 class="center-align"><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4></li>
 	${CuneiformMaker(obj)}
 	</ul>
 	<h5>Spelling: ${obj["Writing_clean"]}</h5>
@@ -69,7 +69,7 @@ function CuneiformMaker(obj){
 		text+=convertCuneiform(i)
 	}
 	if (text){
-		return `<li class="collection-header cuneiform"> ${text}</li>`	
+		return `<li class="collection-header center-align cuneiform"> ${text}</li>`	
 	}else{
 	return ""
 	}

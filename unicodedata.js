@@ -1121,7 +1121,8 @@ var unicodeData = [
 		"HZL": 131,
 		"values": [
 			"GEŠTIN",
-			"wi5"
+			"wi5",
+			"wi"
 		],
 		"unicode": "𒃾"
 	},
