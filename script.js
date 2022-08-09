@@ -1,8 +1,14 @@
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems);
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.collapsible');
+	var instances = M.Collapsible.init(elems);
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
   });
 let datadiv = document.getElementById("data");
+let datadiv2 = document.getElementById("data2");
+datadiv2.style.display="none"
 
 let types={deity:"purple",person:"blue",place:"green"}
 
@@ -19,15 +25,118 @@ for (let [index, i] of data.entries()) {
 	datadiv.append(newname);
 }
 
+
+let allAttes={}
+for (let [index, i] of data.entries()) {
+	let obj = data[index]
+	let attes=obj["Attestation"].split(";")
+	for (a of attes){
+		let at = a.split(" ")
+		at = at[0]+" "+at[1]
+		if (at in allAttes){
+			allAttes[at].push(obj.Name_clean)
+			allAttes[at]=[...new Set(allAttes[at])]
+		}else{
+			allAttes[at]=[obj.Name_clean]
+		}
+	}
+
+
+}
+function detailTablet(e) {
+	var instance = M.Modal.getInstance(modal);
+	let obj = e.currentTarget.innerHTML
+	let modalText = `
+	<ul class="collection with-header">
+	<li class="collection-header"><h4 class="center-align">${obj}</h4></li>
+	</ul>
+	`
+	modalText+='<ul class="collection">'
+	for (i of allAttes[obj]){
+		modalText+=`<li class="collection-item"><a href="{link}" target="_blank">${i} </a></li>`
+	}
+		modalText+="</ul>"
+	modalContent.innerHTML=modalText
+	instance.open();
+}
+
+for(tablet of Object.keys(allAttes)){
+	let newname = document.createElement("a");
+	newname.className = `btn col s3 brown lighten-2 white-text`;
+	newname.id=`tablet-${tablet}`
+	newname.innerHTML = `${tablet}`;
+	newname.addEventListener("click", (e) => {
+		detailTablet(e)
+	});
+	datadiv2.append(newname);
+
+}
+
+let searchName = document.getElementById("searchNames")
+let searchTablet = document.getElementById("searchTablets")
+
+searchTablet.addEventListener("click",e=>{
+	searchTablet.classList.add("disabled")
+	searchName.classList.remove("disabled")
+	datadiv2.style.display=""
+	datadiv.style.display="none"
+
+})
+
+searchName.addEventListener("click",e=>{
+	searchTablet.classList.remove("disabled")
+	searchName.classList.add("disabled")
+	datadiv2.style.display="none"
+	datadiv.style.display=""
+
+})
 let search = document.getElementById("search");
 
 search.addEventListener("input", searchTags);
+
+function removeConsecutiveDuplicates(text){
+	if (text.length<2){
+		return text
+	}
+	if (text[0]!=text[1]){
+		return text[0] + removeConsecutiveDuplicates(text.slice(1))
+	}
+	return removeConsecutiveDuplicates(text.slice(1))
+
+
+}
+
+
+function normalize (text){
+    text=text.toLowerCase().trim();
+    text=text.replace(/í/g,"i")
+    text=text.replace(/g/g,"k")
+    text=text.replace(/ì/g,"i")
+    text=text.replace(/ú/g,"u")
+    text=text.replace(/á/g,"a")
+    text=text.replace(/é/g,"e")
+    text=text.replace(/š/g,"s")
+    text=text.replace(/ḫ/g,"h")
+    text=text.replace(/d/g,"t")
+    text=text.replace(/j/g,"y")
+    text=text.replace(/ia/g,"ya")
+    let l="()/?-.[]x+’'°§⸢⸣*"
+	for (let c of l){
+		while (text.includes(c)){
+			text=text.replace(c,"")
+		}
+	}
+    text=removeConsecutiveDuplicates(text)
+
+    return text
+
+}
 
 function searchTags (e){
 	for (i of datadiv.children) {
 		let index = i.id.split("-")[1];
 		let obj = data[index];
-		if (obj.Tags_clean.includes(search.value)) {
+		if (obj.Query.includes(normalize(search.value))) {
 			i.style.display=""
 		} else {
 			i.style.display="none"
@@ -40,7 +149,7 @@ let modal = document.getElementById("modal1");
 let modalContent = document.getElementById("modal-content");
 function detail(obj) {
 	var instance = M.Modal.getInstance(modal);
-	attes=obj["Attestation"].split(";")
+	let attes=obj["Attestation"].split(";|")
 	modalContent.innerHTML = `
 	<ul class="collection with-header">
 	<li class="collection-header"><h4 class="center-align"><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4></li>
@@ -63,16 +172,16 @@ document.addEventListener("DOMContentLoaded", function () {
 function CuneiformMaker(obj){
 	try {
 
-	let shaped = shaper(obj.Name_clean)
-	let text = ""
-	for (i of shaped){
-		text+=convertCuneiform(i)
-	}
-	if (text){
-		return `<li class="collection-header center-align cuneiform"> ${text}</li>`	
-	}else{
-	return ""
-	}
+		let shaped = shaper(obj.Name_clean)
+		let text = ""
+		for (i of shaped){
+			text+=convertCuneiform(i)
+		}
+		if (text){
+			return `<li class="collection-header center-align cuneiform"> ${text}</li>`
+		}else{
+			return ""
+		}
 	}catch{
 		return ""
 	}
@@ -86,10 +195,13 @@ function attesmaker(attes){
 	<h5>Attestation</h5>
 	<ul class="collection">`
 	let exists=false;
+	attes=attes.sort()
 	for (i of attes){
 		if (i!=""){
+			let ctn = i.split(" ")
+			let link = `https://www.hethport.uni-wuerzburg.de/hetkonk/hetkonk_abfrage.php?p=${ctn[0]}%20${ctn[1]}`
 			exists=true
-			text+=`<li class="collection-item">${i}</li>`
+			text+=`<li class="collection-item"><a href="${link}" target="_blank">${i} </a></li>`
 		}
 	}
 	text+=`</ul>`

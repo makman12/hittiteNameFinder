@@ -17,6 +17,9 @@ font-family: 'Raleway', sans-serif;
 a{
 	margin-bottom: 10px;
 }
+.btn {
+    text-transform: unset !important;
+}
 
 .btn-small{
 	font-size: 0.7rem !important;
@@ -29,8 +32,10 @@ h1 { color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 2em; fo
 footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  padding: 0px !important;
+  width: 100%; 
+  padding: 10px 10px 10px 10px !important;
+  border: 0px solid white;
+  border-top-width: 2px;
 }
 
 .collapsible-body{
