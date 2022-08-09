@@ -152,6 +152,18 @@ function searchTags (e){
 			}
 		}
 	}
+	if (datadiv.style.display=="none"){
+		for (i of datadiv2.children){
+			let tablet = i.id.split("-")[1].toLowerCase();
+			if (tablet.includes(search.value.toLowerCase())){
+				i.style.display=""
+			}else{
+			i.style.display="none"
+			}
+
+		}
+
+	}
 	filterNames()
 }
 
