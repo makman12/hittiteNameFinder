@@ -29,7 +29,7 @@ for (let [index, i] of data.entries()) {
 let allAttes={}
 for (let [index, i] of data.entries()) {
 	let obj = data[index]
-	let attes=obj["Attestation"].split(";")
+	let attes=obj["Attestation"].split(";|")
 	for (a of attes){
 		let at = a.split(" ")
 		at = at[0]+" "+at[1]
@@ -120,23 +120,28 @@ function normalize (text){
     text=text.replace(/d/g,"t")
     text=text.replace(/j/g,"y")
     text=text.replace(/ia/g,"ya")
-    let l="()?-[]x+’'°§⸢⸣"
+    text=removeConsecutiveDuplicates(text)
+    return text
+
+}
+
+function normalize2(text){
+    let l="()?-[]x+’'°§⸢⸣*./"
 	for (let c of l){
 		while (text.includes(c)){
 			text=text.replace(c,"")
 		}
 	}
     text=removeConsecutiveDuplicates(text)
-
-    return text
-
+	return text;
 }
 
 function searchTags (e){
 	for (i of datadiv.children) {
 		let index = i.id.split("-")[1];
 		let obj = data[index];
-		let re = new RegExp(normalize(search.value))
+		let search_value=normalize(search.value)
+		let re = new RegExp(search_value)
 		let query = obj.Query.split(",")
 		for (let q of query){	
 			if (re.exec(q)) {
@@ -146,7 +151,6 @@ function searchTags (e){
 				i.style.display="none"
 			}
 		}
-
 	}
 	filterNames()
 }
