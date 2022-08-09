@@ -120,7 +120,7 @@ function normalize (text){
     text=text.replace(/d/g,"t")
     text=text.replace(/j/g,"y")
     text=text.replace(/ia/g,"ya")
-    let l="()/?-.[]x+’'°§⸢⸣*"
+    let l="()?-[]x+’'°§⸢⸣"
 	for (let c of l){
 		while (text.includes(c)){
 			text=text.replace(c,"")
@@ -136,11 +136,17 @@ function searchTags (e){
 	for (i of datadiv.children) {
 		let index = i.id.split("-")[1];
 		let obj = data[index];
-		if (obj.Query.includes(normalize(search.value))) {
-			i.style.display=""
-		} else {
-			i.style.display="none"
+		let re = new RegExp(normalize(search.value))
+		let query = obj.Query.split(",")
+		for (let q of query){	
+			if (re.exec(q)) {
+				i.style.display=""
+				break
+			} else {
+				i.style.display="none"
+			}
 		}
+
 	}
 	filterNames()
 }
