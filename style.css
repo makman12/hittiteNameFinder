@@ -7,6 +7,12 @@ body{
 font-family: 'Raleway', sans-serif;
 }
 
+.closer{
+position: relative;
+top:20px;
+
+}
+
 .title{
 	position: absolute;
 	top: 50%;
@@ -26,7 +32,7 @@ a{
 	padding: 0px 5px 0px 5px !important;
 }
 
-h1 { color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 2em; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+
 
 
 footer {
@@ -34,8 +40,8 @@ footer {
   bottom: 0;
   width: 100%; 
   padding: 10px 10px 10px 10px !important;
-  border: 0px solid white;
-  border-top-width: 2px;
+  border: 0px solid black;
+  border-top-width: 0px;
 }
 
 .collapsible-body{

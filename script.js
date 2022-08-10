@@ -51,16 +51,34 @@ function detailTablet(e) {
 	<li class="collection-header"><h4 class="center-align">${obj}</h4></li>
 	</ul>
 	`
-	modalText+='<ul class="collection">'
-	for (i of allAttes[obj]){
-		modalText+=`<li class="collection-item"><a href="{link}" target="_blank">${i} </a></li>`
-	}
-		modalText+="</ul>"
 	modalContent.innerHTML=modalText
+	let ul = document.createElement("ul")
+	ul.className="collection"
+	for (i of allAttes[obj]){
+		console.log(i)
+		let li = document.createElement("li")
+		li.className="collection-item"
+		let link = document.createElement("a")
+		link.innerHTML=i
+		li.appendChild(link)
+		let index = ""
+		for (let a of datadiv.children){
+			if(a.text==i){
+			index = a.id.split("-")[1];
+			break;
+			} 
+		}
+		li.addEventListener("click",e=>{
+			detail(data[index])
+		})
+
+		ul.appendChild(li)
+	}
+	modalContent.appendChild(ul)
 	instance.open();
 }
 
-for(tablet of Object.keys(allAttes)){
+for(tablet of Object.keys(allAttes).sort().slice(4)){
 	let newname = document.createElement("a");
 	newname.className = `btn col s3 brown lighten-2 white-text`;
 	newname.id=`tablet-${tablet}`
@@ -75,6 +93,22 @@ for(tablet of Object.keys(allAttes)){
 let searchName = document.getElementById("searchNames")
 let searchTablet = document.getElementById("searchTablets")
 
+let regexSearch = document.getElementById("regexSearch")
+let normalSearch = document.getElementById("normalSearch")
+let searchMethod = "regex"
+
+regexSearch.addEventListener("click",e=>{
+	regexSearch.classList.add("disabled")
+	normalSearch.classList.remove("disabled")
+	searchMethod="regex"
+
+})
+normalSearch.addEventListener("click",e=>{
+	normalSearch.classList.add("disabled")
+	regexSearch.classList.remove("disabled")
+	searchMethod="normal"
+
+})
 searchTablet.addEventListener("click",e=>{
 	searchTablet.classList.add("disabled")
 	searchName.classList.remove("disabled")
@@ -90,6 +124,7 @@ searchName.addEventListener("click",e=>{
 	datadiv.style.display=""
 
 })
+
 let search = document.getElementById("search");
 
 search.addEventListener("input", searchTags);
@@ -111,6 +146,7 @@ function normalize (text){
     text=text.toLowerCase().trim();
     text=text.replace(/í/g,"i")
     text=text.replace(/g/g,"k")
+    text=text.replace(/b/g,"p")
     text=text.replace(/ì/g,"i")
     text=text.replace(/ú/g,"u")
     text=text.replace(/á/g,"a")
@@ -141,8 +177,9 @@ function searchTags (e){
 		let index = i.id.split("-")[1];
 		let obj = data[index];
 		let search_value=normalize(search.value)
-		let re = new RegExp(search_value)
 		let query = obj.Query.split(",")
+		if (searchMethod=="regex"){
+		let re = new RegExp(search_value)
 		for (let q of query){	
 			if (re.exec(q)) {
 				i.style.display=""
@@ -150,6 +187,21 @@ function searchTags (e){
 			} else {
 				i.style.display="none"
 			}
+		}}
+		if (searchMethod == "normal"){
+		
+		search_value=normalize2(search_value)
+			for (let q of query){
+			if (q.includes(search_value)) {
+				i.style.display=""
+				break
+			} else {
+				i.style.display="none"
+			}
+	
+
+			}
+
 		}
 	}
 	if (datadiv.style.display=="none"){
@@ -169,6 +221,8 @@ function searchTags (e){
 
 let modal = document.getElementById("modal1");
 let modalContent = document.getElementById("modal-content");
+
+
 function detail(obj) {
 	var instance = M.Modal.getInstance(modal);
 	let attes=obj["Attestation"].split(";|")
@@ -177,9 +231,9 @@ function detail(obj) {
 	<li class="collection-header"><h4 class="center-align"><sup>${obj["Det_1"]}</sup>${obj["Name_clean"]} (${obj["Type"]})</h4></li>
 	${CuneiformMaker(obj)}
 	</ul>
-	<h5>Spelling: ${obj["Writing_clean"]}</h5>
 	<ul class="collection" ></ul>
 	${corresMaker(obj)}
+	${VariantMaker(obj)}
 	${LiteratureMaker(obj)}
 	${attesmaker(attes)}
 	`
@@ -241,6 +295,16 @@ function LiteratureMaker(obj){
 		text=`<h5>Literature</h5>
 	<ul class="collection" ></ul>
 	<span>${obj["Literature"]}</span>`
+		return	text}
+	else{
+		return ""
+	}
+}
+function VariantMaker(obj){
+	if (obj["Variant_Forms"]){
+		text=`<h5>Variant Forms</h5>
+	<ul class="collection" ></ul>
+	<span>${obj["Variant_Forms"]}</span>`
 		return	text}
 	else{
 		return ""

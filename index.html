@@ -22,29 +22,29 @@
 			<div class="row titlecontainer">
 				<img src="laman.png" class="col l4 m5 s6" alt=""/>
 				<h1 class="title"></h1>
-
-				<span class="right">Part of <a href="https://cuneiform.neocities.org/laman/start.html" target="_blank" class="blue-text"><i>LAMAN</i></a> project  Based on <a href="https://cuneiform.neocities.org/HDN/start.html" target="_blank" class="blue-text"><i>Hittite Divine Names,</i></a>
-						<a href="https://cuneiform.neocities.org/HPN/start.html" target="_blank" class="blue-text"><i>Hittite Personal Names,</i></a>
-						<a href="https://cuneiform.neocities.org/HGN/start.html" target="_blank" class="blue-text"><i>Hittite Geographical Names,</i></a>
-						under <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" class="blue-text"><i>GPLv3</i></a> license
-						</p></span>
 			</div>
-			<div class="s12">
-				<a class="btn disabled blue lighten-3" id="searchNames">Name Search</a>
-				<a class="btn blue lighten-3" id="searchTablets">Tablet Search</a>
+			<div class="s12 row closer" >
+<span class="text-left col s6">Search for:</span>
+<span class="right-align col s6">Search Method:</span>
+			</div>
+			<div class="s12 row">
+				<a class="btn disabled green lighten-3 col s2" id="searchNames">Names</a>
+				<a class="btn green lighten-3 col s2" id="searchTablets">Tablets</a>
+				<a class="btn disabled green lighten-3 col s2 offset-s4" id="regexSearch">Regex</a>
+				<a class="btn green lighten-3 col s2" id="normalSearch">Normal</a>
 			</div>
 			<nav class="s12">
 				<div class="nav-wrapper">
-					<div class="input-field blue lighten-3">
-						<input id="search" type="search" >
-						<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+					<div class="input-field white lighten-4">
+						<input id="search" type="search" autocomplete=off >
+						<label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
 						<i class="material-icons">close</i>
 					</div>
 				</div>
 			</nav>
 
-			<p class="center-align ">Click on a name to visualize correspondences & literature; use the filters below and/or a string in the search box (with or without diacritics).
-			This search box allows you to search with regex patterns. Use the characters ^ and $ as left- and right-end markers respectively.</p>
+			<p class="center-align ">Click on a name for details. Use the filters below and/or a string in the search box (with or without diacritics).
+			This search box allows you to search with regex patterns. Use the characters ^ and $ as left- and right-end markers respectively. For a more detalied explanation please see <a class="blue-text" href="/help.html" target="_blank">help</a>.</p>
 			<ul class="collapsible">
 				<li class="col s4">
 					<div class="collapsible-header"><i class="material-icons">sort</i>Types</div>
@@ -81,6 +81,13 @@
 
 			</div>
 		</main>
+		<footer class="page-footer white black-text">
+				<span class="left">Part of <a href="https://cuneiform.neocities.org/laman/start.html" target="_blank" class="blue-text"><i>LAMAN</i></a> project under <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" class="blue-text"><i>GPLv3</i></a> license
+						</span>
+				<div class="right">
+							<a class="blue-text" href="http://www.github.com/makman12" target="_blank"><i>M. Ali Akman</i></a>, and <a class="blue-text" href="https://osf.io/5qjpk/wiki/home/" target="_blank"><i>Michele Cammarosano</i></a> CC BY-SA 4.0
+			</div>
+		</footer>
 		<div id="modal1" class="modal">
 			<div id="modal-content" class="modal-content">
 			</div>
@@ -92,11 +99,6 @@
 		<br></br>
 		<br></br>
 		<br></br>
-		<footer class="blue darken-1 white-text">
-				<div class="right">
-							<a class="white-text" href="https://osf.io/5qjpk/wiki/home/" target="_blank"><i>Michele Cammarosano</i></a>, and <a class="white-text" href="http://www.github.com/makman12" target="_blank"><i>M. Ali Akman</i></a> CC BY-SA 4.0
-			</div>
-		</footer>
 	</body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script type="text/javascript" src="data.js"></script>
