@@ -13,6 +13,16 @@ top:20px;
 
 }
 
+
+.napoli{
+
+	background-color: #a42c34 !important;
+}
+.bilkent{
+
+	background-color: #1f4fa2 !important;
+}
+
 .title{
 	position: absolute;
 	top: 50%;
