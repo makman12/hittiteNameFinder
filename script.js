@@ -268,7 +268,7 @@ function CuneiformMaker(obj){
 function attesmaker(attes){
 	let text=""
 	text+=`
-	<h5>Attestation</h5>
+	<h5>Attestations</h5>
 	<ul class="collection">`
 	let exists=false;
 	attes=attes.sort()
@@ -292,7 +292,7 @@ function attesmaker(attes){
 
 function LiteratureMaker(obj){
 	if (obj["Literature"]){
-		text=`<h5>Literature</h5>
+		text=`<h5>Literature & Notes</h5>
 	<ul class="collection" ></ul>
 	<span>${obj["Literature"]}</span>`
 		return	text}
@@ -302,7 +302,7 @@ function LiteratureMaker(obj){
 }
 function VariantMaker(obj){
 	if (obj["Variant_Forms"]){
-		text=`<h5>Variant Forms</h5>
+		text=`<h5>Variant forms</h5>
 	<ul class="collection" ></ul>
 	<span>${obj["Variant_Forms"]}</span>`
 		return	text}
@@ -313,7 +313,7 @@ function VariantMaker(obj){
 
 function corresMaker(obj){
 	if(obj["Correspondence"]){
-		let text =`<h5>Correspondence</h5>
+		let text =`<h5>Correspondences</h5>
 	<ul class="collection" ></ul>
 	<span>${obj["Correspondence"]}</span>`
 		return text

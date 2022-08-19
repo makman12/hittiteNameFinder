@@ -5,12 +5,18 @@
 
 body{
 font-family: 'Raleway', sans-serif;
+font-size: 1.1rem;
 }
 
 .closer{
 position: relative;
 top:20px;
 
+}
+
+.help{
+	padding: 50px 50px 50px 50px;
+	box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 50px -40px;
 }
 
 
@@ -52,6 +58,8 @@ footer {
   padding: 10px 10px 10px 10px !important;
   border: 0px solid black;
   border-top-width: 0px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 50px 15px;
+  border-radius: 20px 20px 0px 0px;
 }
 
 .collapsible-body{
