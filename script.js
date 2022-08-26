@@ -248,11 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function CuneiformMaker(obj){
 	try {
 
-		let shaped = shaper(obj.Name_clean)
-		let text = ""
-		for (i of shaped){
-			text+=convertCuneiform(i)
-		}
+		let text = convertWordtoCuneiform(obj.Name_clean)
 		if (text){
 			return `<li class="collection-header center-align cuneiform"> ${text}</li>`
 		}else{

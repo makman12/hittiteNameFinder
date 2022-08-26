@@ -1,6 +1,36 @@
 let input = document.getElementById("input")
 let result = document.getElementById("result")
 
+function normalizeForCuneiform(text){
+    let l="()?-[]x+’'°§⸢⸣*./-"
+	for (let c of l){
+		while (text.includes(c)){
+			text=text.replace(c,"")
+		}
+	}
+	// remove <i> from text
+	while (text.includes("<i>")){
+		text=text.replace("<i>","")
+	}
+	// split text  into words take the first word
+	let words = text.split(" ")
+	let firstword = words[0]
+	return firstword;
+}
+
+
+function convertWordtoCuneiform(word){
+	word=normalizeForCuneiform(word)
+	let shaped = shaper(word)
+		let text = ""
+		for (i of shaped){
+			text+=convertCuneiform(i)
+		}
+		return text
+	
+}
+
+
 function convertCuneiform(sy){
 	let space = ""
 	if(sy==""){
@@ -23,7 +53,7 @@ function convertCuneiform(sy){
 		return h1+h2
 	}	
 	else{
-		return "?"
+		return "-"
 	}
 }
 
